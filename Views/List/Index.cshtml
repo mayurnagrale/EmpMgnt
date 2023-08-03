@@ -1,0 +1,39 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model List<Employee>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Employee List</title>
+</head>
+<body>
+    <h1>Employee List</h1>
+    <a class="btn-primary" href='/Form'>New Employee</a>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Mobile</th>
+            <th>Date of Birth</th>
+            <th></th>
+        </tr>
+        @foreach (var employee in Model)
+        {
+            <tr>
+                <td>@employee.Name</td>
+                <td>@employee.Address</td>
+                <td>@employee.Mobile</td>
+                <td>@employee.DOB.ToShortDateString()</td>
+                <td><a class="btn-primary" href='/Form/ModifyEmployee?id=@employee.Id'>Edit</a></td>
+                <td><a class="btn-primary" href="@Url.Action("DeleteEmployee","List",new{@employee.Id})">Delete</a></td>
+                @*<td><button class="btn-danger" asp-action="DeleteEmployee(@employee.Id)" asp-controller="ListController">Delete</button></td>*@
+            </tr>
+        }
+    </table> 
+</body>
+</html>
